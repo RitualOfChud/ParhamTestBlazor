@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1 class="text-center">Hello, world!</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Fullname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Worker worker in Workers)
+        {
+            <tr>
+                <td>@worker.Firstname</td>
+                <td>@worker.Lastname</td>
+                <td>@worker.Fullname</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code
+{
+    public List<Worker> Workers = new List<Worker>() { new Worker() { Firstname = "Damien", Lastname = "Weatherley" } };
+}
