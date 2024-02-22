@@ -1,9 +1,12 @@
 ﻿namespace ParhamTestBlazor.Components.Worker
 {
-    public class Worker
+    public class Worker : Employee
     {
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Fullname { get { return $"{Firstname} {Lastname}"; } }
+        public double Wage { get; set; }
+
+        public Worker(string firstname, string lastname, double wage) : base(firstname, lastname)
+        {
+            Wage = wage;
+        }
     }
 }

@@ -4,27 +4,29 @@
 
 <h1 class="text-center">Hello, world!</h1>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Fullname</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(Worker worker in Workers)
-        {
-            <tr>
-                <td>@worker.Firstname</td>
-                <td>@worker.Lastname</td>
-                <td>@worker.Fullname</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (Employee employee in _employees)
+{
+    if(employee is Worker w)
+    {
+        <p>Hello @w.Fullname, you are a worker making €@w.Wage per hour</p>
+    }
+
+    if (employee is Boss b)
+    {
+        <p>Hello @b.Fullname, you are the boss of @b.Department making €@b.Salary per year</p>
+    }
+}
 
 @code
 {
-    public List<Worker> Workers = new List<Worker>() { new Worker() { Firstname = "Damien", Lastname = "Weatherley" } };
+    private List<Employee> _employees = new List<Employee>()
+    {
+        new Worker("Damien", "Weatherley", 35),
+        new Worker("Simon", "Poppin", 35),
+        new Worker("Bos", "Little", 35),
+        new Worker("Sally", "Jabbers", 35),
+        new Worker("Mary", "Scots", 35),
+        new Boss("Andrew", "Baker", 74000, "Logistics"),
+        new Boss("Alice", "Stone", 80000, "IT"),
+    };
 }
